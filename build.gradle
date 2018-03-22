@@ -37,8 +37,6 @@ dependencies {
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
-def queryDslOutput = file('src-generated/main/java')
-
 sourceSets {
     main {
         java {

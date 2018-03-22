@@ -4,15 +4,11 @@ import com.idincu.sample.jpa.domain.Cart;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Optional;
 
 import static com.idincu.sample.jpa.api.spec.SamplePredicates.queryCarts;
-
 import static com.idincu.sample.jpa.api.spec.SamplePredicates.queryCartsWithDSL;
-import static org.springframework.data.jpa.domain.Specification.where;
 
 @Transactional(readOnly = true)
 @Service
@@ -20,12 +16,10 @@ public class SampleService {
 
     final private CartRepository cartRepository;
     final private ItemEntryRepository itemEntryRepository;
-    @PersistenceContext final private EntityManager entityManager;
 
-    public SampleService(CartRepository cartRepository, ItemEntryRepository itemEntryRepository, EntityManager entityManager) {
+    public SampleService(CartRepository cartRepository, ItemEntryRepository itemEntryRepository) {
         this.cartRepository = cartRepository;
         this.itemEntryRepository = itemEntryRepository;
-        this.entityManager = entityManager;
     }
 
     @Transactional(readOnly = true)
