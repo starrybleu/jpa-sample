@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 import static com.idincu.sample.jpa.api.spec.SamplePredicates.queryCarts;
 import static com.idincu.sample.jpa.api.spec.SamplePredicates.queryCartsWithDSL;
@@ -15,17 +14,14 @@ import static com.idincu.sample.jpa.api.spec.SamplePredicates.queryCartsWithDSL;
 public class SampleService {
 
     final private CartRepository cartRepository;
-    final private ItemEntryRepository itemEntryRepository;
 
-    public SampleService(CartRepository cartRepository, ItemEntryRepository itemEntryRepository) {
+    public SampleService(CartRepository cartRepository) {
         this.cartRepository = cartRepository;
-        this.itemEntryRepository = itemEntryRepository;
     }
 
     @Transactional(readOnly = true)
     public Cart getCart(long cartNo) {
-        Optional<Cart> optionalCart = cartRepository.findById(cartNo);
-        return optionalCart.orElse(Cart.EMPTY);
+        return cartRepository.findByNo(cartNo);
     }
 
     @Transactional(readOnly = true)

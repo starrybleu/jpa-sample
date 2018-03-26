@@ -24,6 +24,4 @@ public class Cart {
 
     private Cart() {}
 
-    public static Cart EMPTY = null;
-
 }
